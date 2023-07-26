@@ -16,7 +16,7 @@ self.addEventListener('install', function(event) {
       return cache.addAll([
         './',
         './index.html',
-        './css/styles.css'
+        './css/style.css'
       ]);
     })
   );
