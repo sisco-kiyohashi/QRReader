@@ -3,21 +3,32 @@
   <head>
     <meta charset="UTF-8">
     <title>QR Code Scanner</title>
-    <script src="cordova.js"></script>
+    <script type="text/javascript">
+        const video = document.querySelector('#js-video')
+
+        navigator.mediaDevices
+          .getUserMedia({
+            audio: false,
+            video: {
+              facingMode: {
+                exact: 'environment'
+              }
+            }
+          })
+          .then(function (stream) {
+            video.srcObject = stream
+            video.onloadedmetadata = function (e) {
+              video.play()
+            }
+          })
+          .catch(function (err) {
+            alert('Error!!')
+          })
+    </script>
   </head>
   <body>
-    <button onclick="scan()">Scan QR Code</button>
-    <script>
-      function scan() {
-        cordova.plugins.barcodeScanner.scan(
-          function (result) {
-            alert("Content: " + result.text);
-          },
-          function (error) {
-            alert("Scanning failed: " + error);
-          }
-        );
-      }
-    </script>
+    <div class="reader">
+      <video id="js-video" class="reader-video" autoplay playsinline></video>
+    </div>
   </body>
 </html>
