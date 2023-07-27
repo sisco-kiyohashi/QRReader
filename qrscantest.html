@@ -39,16 +39,29 @@
           .then(function (stream) {
             const video = document.querySelector('#js-video')
             video.srcObject = stream
-            video.onloadedmetadata = function (e) {
+            /*video.onloadedmetadata = function (e) {
               video.play()
-            }
+            }*/
           })
           .catch(function (err) {
             alert('Error!!' + err.message)
           })
+        function scanQRCode() {
+          const video = document.querySelector('#js-video')
+          if (video.nodeValue === 'Stop') {
+            video.pause()
+            video.nodeValue = 'Scan'
+            return
+          } else {
+            video.play()
+            video.nodeValue = 'Stop'
+            return
+          }
+        }
     </script>
   </head>
   <body>
+    <input type="button" value="Scan" onclick="scanQRCode()" />
     <div class="reader">
       <video id="js-video" class="reader-video" autoplay playsinline></video>
     </div>
