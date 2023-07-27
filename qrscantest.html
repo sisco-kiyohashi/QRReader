@@ -48,20 +48,21 @@
           })
         function scanQRCode() {
           const video = document.querySelector('#js-video')
-          if (video.value === 'Stop') {
+          const button = document.querySelector('#js-button')
+          if (button.value === 'Stop') {
             video.pause()
-            video.value = 'Scan'
+            button.value = 'Scan'
             return
           } else {
             video.play()
-            video.value = 'Stop'
+            button.value = 'Stop'
             return
           }
         }
     </script>
   </head>
   <body>
-    <input type="button" value="Scan" onclick="scanQRCode()" style="font-size: xx-large;" />
+    <input id="js-button" type="button" value="Scan" onclick="scanQRCode()" style="font-size: xx-large;" />
     <div class="reader">
       <video id="js-video" class="reader-video" playsinline></video>
     </div>
