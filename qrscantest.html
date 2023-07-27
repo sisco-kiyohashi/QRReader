@@ -48,13 +48,13 @@
           })
         function scanQRCode() {
           const video = document.querySelector('#js-video')
-          if (video.nodeValue === 'Stop') {
+          if (video.value === 'Stop') {
             video.pause()
-            video.nodeValue = 'Scan'
+            video.value = 'Scan'
             return
           } else {
             video.play()
-            video.nodeValue = 'Stop'
+            video.value = 'Stop'
             return
           }
         }
