@@ -51,10 +51,12 @@
           const button = document.querySelector('#js-button')
           if (button.value === 'Stop') {
             video.pause()
+            video.srcObject.stream.getTracks()[0].stop()
             button.value = 'Scan'
             return
           } else {
             video.play()
+            video.srcObject.stream.getTracks()[0].start()
             button.value = 'Stop'
             return
           }
